@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <!-- CDN de Vue -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- CDN Bostrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="app">
+    <h1>Hola Mundo</h1>
+    <h1>{{ title }}</h1>
+    <!-- validaciones en atributos dinamicos siempre van con [] -->
+    <!-- <h2
+      class="bg-dark"
+      :class="[amount > 500 ? 'text-success' : 'text-danger']"
+    > -->
+    <h2
+      class="bg-dark"
+      :class="colorAmount"
+    >
+      Mi saldo disponible es: {{ amount }}
+    </h2>
+    <!-- <h2>{{ amount > 1000 ? "es mayor a mil" : "es menor a mil o igual a mil"}}</h2> -->
+    <!-- v-bind o solo ":" permite añadir valores de atributos de forma dinamica -->
+    <a :href="link">Ir al enlace</a>
+
+    <hr>
+    <!-- v-if -->
+    <h2 v-if="status">Cuenta Activada</h2>
+    <h2 v-else>Cuenta Desactivada</h2>
+
+    <hr>
+
+    <h2 v-if="amount > 500">Cantidad: {{ amount }}</h2>
+    <h2 v-else-if="amount <= 500 && amount > 0 ">
+      Cantidad:
+      <span style="color: red">{{ amount }}</span>
+    </h2>
+    <h2 v-else>Sin Cantidad {{ amount }}</h2>
+
+    <hr>
+
+    <!-- v-for -->
+    <h2>Mis servicios disponibles:</h2>
+    <ul>
+      <!-- Un segundo parametro captura el indice de la iteracion -->
+      <!-- :key es un id unico del elemento -->
+      <li v-for="(service, index) in services" :key="index">{{ service }}</li>
+    </ul>
+
+    <hr>
+
+    <!-- Eventos -->
+     <!-- v-on o solo "@" permite añadir un evento a un nodo html -->
+    <button @click="addBalance">Agregar saldo</button>
+    <button @click="decreaseBalance" :disabled="disableButton">Disminuir saldo</button>
+
+    <!-- Los props se definen en el componente y pueden ser estaticos o dinamicos -->
+    <footer-bank 
+      :amount="amount"
+      date="14 de Junio del 2021"
+    />
+  </div>
+
+  <!-- Logica de la app -->
+  <script src="./main.js"></script>
+  <script src="./components/Footer.js"></script>
+  <!-- Montar la app: se le indica cual es el nodo html donde se desplegara la app de Vue -->
+  <script>
+    const mountedApp = app.mount('#app')
+  </script>
+</body>
+
+</html>
