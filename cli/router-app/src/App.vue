@@ -2,7 +2,8 @@
   <div id="nav">
     <!-- router-link: permite crear links a otras rutas -->
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/blog">Blog</router-link>
   </div>
   <!-- router-view: nodo donde se renderea las rutas -->
   <router-view/>
