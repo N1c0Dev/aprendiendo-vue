@@ -7,7 +7,10 @@
     <!-- Ejecutamos una mutacion pero no es recomendable hacerlo directamente -->
     <!-- <button @click="increase">Aumentar</button> -->
     <BtnDecrease />
-    <button @click="actionIncrease">Aumentar</button>
+    <button @click="actionIncrease(50)">Aumentar</button>
+    <hr>
+    <BtnAction :state="false"/>
+    <BtnAction :state="true"/>
   </div>
 </template>
 
@@ -20,11 +23,13 @@ import {
 } from 'vuex'
 
 import BtnDecrease from '@/components/BtnDecrease.vue'
+import BtnAction from '@/components/BtnAction.vue'
 
 export default {
   name: 'Home',
   components: {
     BtnDecrease,
+    BtnAction,
   },
   data() {
     return {

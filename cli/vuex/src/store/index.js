@@ -7,22 +7,30 @@ export default createStore({
   },
   // Es la unica forma de cambiar el valor de un state
   mutations: {
-    increase(state) {
-      state.counter = state.counter + 10
+    increase(state, payload) {
+      state.counter = state.counter + payload
     },
-    decrease(state) {
-      state.counter = state.counter - 10
+    // payload convencion de nombre de la variable que recibe los parametros
+    decrease(state, payload) {
+      state.counter = state.counter - payload
     }
   },
   // Ejecuta una mutacion y puede tener logica extra como llamados a APIS
   actions: {
     // Commit es solo un tipo de accion que se puede ejecutar
-    actionIncrease({commit}) {
+    actionIncrease({commit}, number) {
       // ejecuta la mutacion
-      commit('increase')
+      commit('increase', number)
     },
-    actionDecrease({commit}) {
-      commit('decrease')
+    actionDecrease({commit}, number) {
+      commit('decrease', number)
+    },
+    actionButton({commit}, payload) {
+      if (payload.state) {
+        commit('increase', payload.number)
+      } else {
+        commit('decrease', payload.number)
+      }
     }
   },
   modules: {
